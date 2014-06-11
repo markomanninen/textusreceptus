@@ -1,11 +1,11 @@
-#!/usr/local/bin/python
+﻿#!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 # file: main.py
 
 import re
 import pandas as pd
 from os.path import isfile
-from tagpy import helper as h, table
+from remarkuple import helper as h, table
 from isopsephy import preprocess_greek, to_roman, isopsephy
 from IPython.display import HTML
 
@@ -91,10 +91,10 @@ function handle_output(out_type, out) {
     document.getElementById("result").innerHTML = res
 }
 
-var kernel = IPython.notebook.kernel
 var callbacks = {'output' : handle_output}
 
 function search_strongs_dictionary(field) {
+    var kernel = IPython.notebook.kernel
     kernel.execute("search_strongs_dictionary_html('"+document.getElementById(field).value+"', '"+field+"')", callbacks, {silent:false})
 }
 

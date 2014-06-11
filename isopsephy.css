@@ -1,0 +1,99 @@
+/* notebook unstylings */
+
+.rendered_html table,
+.rendered_html tr,
+.rendered_html th,
+.rendered_html td {
+    border: 0
+}
+
+/* general table styles */
+
+table {
+    color: black;
+    border: 0;
+    margin: 1.5em auto;
+    border-bottom: 1px solid #999;
+    border-collapse: collapse;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -moz-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    background: #444;
+}
+table caption {
+    margin-bottom: .75em;
+    text-align: center;
+    font-style: italic;
+}
+table td {
+    -moz-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    white-space: nowrap;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    padding: 0.4em 0.8em;
+    background: #fff;
+}
+table tfoot,
+table tbody {
+    outline-offset: -1px;
+    outline: 1px solid #ccc;
+}
+
+table thead {}
+table thead th {
+    border: none;
+    border-bottom: 2px solid #eee;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.4em 0.8em;
+}
+
+table tbody {}
+table tbody tr:hover td {
+    background: #ffe;
+    color: black;
+}
+table tbody tr td:hover {
+    background: #f5f6d2;
+}
+table tbody tr td:last-child {
+    text-align: center
+}
+
+table tbody tr th {
+    color: white;
+    padding: 0.4em 0.8em;
+    text-transform: uppercase
+}
+
+
+table tfoot {}
+table tfoot td {
+    padding: 0.4em 0.8em;
+    text-align: center;
+    font-style: italic;
+}
+
+table .right {
+    text-align: right
+}
+
+table tr.ok td {background-color: white;}
+table tr.fail td {background-color: red; color: white}
+table tr.error td {background-color: lightpink}
+table tbody.failures {}
+table tbody.errors {}
+
+table tbody tr th:first-child {background-color: #777; padding: 0 10px}
+
+/* custom table styles */
+
+table.char-table thead tr th, 
+table.char-table tbody tr td, 
+table.char-table tfoot tr td {text-align: center;}
+table.char-table tbody tr td.empty-cell {border-left: 1px solid #aaa}

@@ -35,9 +35,10 @@ exporting:
 - find_cumulative_indices
 """
 
-from html import char_table, char_table_data, print_char_table
+from html import char_table, char_table_data
 
 """
 exporting:
 - char_table
+- char_table_data
 """

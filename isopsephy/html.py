@@ -4,7 +4,7 @@
 
 from IPython.display import HTML
 import pandas as pd
-from tagpy import helper as h, table
+from remarkuple import helper as h, table
 from math import digital_root, digital_sum
 from main import to_roman, to_greek, isopsephy, unicode_isopsephy
 
@@ -42,8 +42,6 @@ def char_table_data(text, modulo = 9):
 
     return (data, data2, data3)
 
-def print_char_table(text, modulo = 9):
-    return HTML(str(char_table(text, modulo)))
 
 def char_table(text, modulo = 9):
     # initialize html table
@@ -60,18 +58,22 @@ def char_table(text, modulo = 9):
     for word in text.split():
         if i > 0:
             # add empty cells for word separation
-            tr1 << h.th("&nbsp;")+h.th("&nbsp;")
-            tr2 << h.td()+h.td(Class="empty-cell")
-            tr3 << h.td()+h.td(Class="empty-cell")
-            tr4 << h.td()+h.td()
+            tr1 += h.th("&nbsp;")
+            tr1 += h.th("&nbsp;")
+            tr2 += h.td()
+            tr2 += h.td(Class="empty-cell")
+            tr3 += h.td()
+            tr3 += h.td(Class="empty-cell")
+            tr4 += h.td()
+            tr4 += h.td()
         num = unicode_isopsephy(word)
-        tr4 << h.td("%s %s" % (num, h.sub(digital_root(num))), colspan=len(word))
+        tr4 += h.td("%s %s" % (num, h.sub(digital_root(num))), colspan=len(word))
         i = i+1
         # add each letter on own cell
         for letter in word:
-            tr1 << h.th(letter.encode('utf-8'))
-            tr2 << h.td(to_roman(letter.encode('utf-8')))
-            tr3 << h.td(unicode_isopsephy(letter))
+            tr1 += h.th(letter.encode('utf-8'))
+            tr2 += h.td(to_roman(letter.encode('utf-8')))
+            tr3 += h.td(unicode_isopsephy(letter))
     # add rows to table
     tbl.addHeadRow(tr1)
     tbl.addBodyRow(tr2)
