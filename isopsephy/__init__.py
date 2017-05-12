@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # file: __init__.py
 
-from main import *
+from . main import *
 
 """
 exporting:
@@ -18,7 +18,7 @@ exporting:
 - find
 """
 
-from math import *
+from . math import *
 
 """
 exporting:
@@ -28,14 +28,14 @@ exporting:
 - digital_root_summary
 """
 
-from search import find_cumulative_indices
+from . search import find_cumulative_indices
 
 """
 exporting:
 - find_cumulative_indices
 """
 
-from html import char_table, char_table_data
+from . html import char_table, char_table_data
 
 """
 exporting:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # file: table.py
 
-from main import helper
+from . main import helper
 
 def table(*args, **kw):
     """

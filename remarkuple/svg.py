@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # file: svg.py
 
-from main import helper
+from . main import helper
 from math import pi, sin, cos
 
 def svg(*args, **kw):

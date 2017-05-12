@@ -5,8 +5,8 @@
 from IPython.display import HTML
 import pandas as pd
 from remarkuple import helper as h, table
-from math import digital_root, digital_sum
-from main import to_roman, to_greek, isopsephy, unicode_isopsephy
+from . math import digital_root, digital_sum
+from . main import to_roman, to_greek, isopsephy, unicode_isopsephy
 
 def _init_text(text, capitalize = None):
     return text.decode('utf-8')

@@ -4,7 +4,7 @@
 
 import re
 import pandas as pd
-import search
+from . search import find_cumulative_indices
 
 data = {}
 
@@ -294,7 +294,7 @@ roman_greek_letters = {}
 keys = ['roman', 'greek', 'capital', 'capital2', 'small2', 'small3', 'small4']
 for num, d in data.items():
     for k in keys:
-        if d.has_key(k):
+        if k in d:
             greek_roman_values[d[k]] = num
             if k == 'roman':
                 if d['segment'] != 'numeral':
@@ -302,7 +302,7 @@ for num, d in data.items():
                     greek_roman_letters[d[k].upper()] = d['capital']
                 greek_roman_values[d[k].upper()] = num
             else:
-                if d.has_key('roman'):
+                if 'roman' in d:
                     if k == 'capital' or k == 'capital2':
                         roman_greek_letters[d[k]] = d['roman'].upper()
                     else:
@@ -312,7 +312,7 @@ greek_letters = ''
 keys = ['greek', 'capital', 'capital2', 'small2', 'small3', 'small4']
 for num, d in data.items():
     for k in keys:
-        if d.has_key(k):
+        if k in d:
             #αΑβΒγΓδΔεΕϛϚϜϝζΖηΗθΘιΙυΥκΚϡϠͲͳλΛωΩμΜτΤνΝξΞοΟσΣϹϲςπΠχΧϙϘϞϟρΡψΨφΦ
             greek_letters += d[k]
 
@@ -332,7 +332,7 @@ def isopsephy(string):
     Main function will convert input to unicode format for easier frontend, but on module logic
     more straightforward function unicode_isopsephy is used.
     """
-    return unicode_isopsephy(unicode(string, encoding="utf-8"))
+    return unicode_isopsephy(string)
 
 def unicode_isopsephy(string):
     """
@@ -359,7 +359,7 @@ def to_roman(word):
     letters to roman letter. Capital letters are honored.
     """
     return regex_greek_to_roman_letters.sub(lambda x: roman_greek_letters[x.group()],
-                                            unicode(word, encoding="utf-8")).encode('utf-8')
+                                            word).encode('utf-8')
 
 def to_greek(word):
     """
@@ -373,7 +373,7 @@ def to_greek(word):
 names = {'name': 'name_value', 'name2': 'name_value2', 'name3': 'name_value3', 'name4': 'name_value4'}
 for num, d in data.items():
     for k, v in names.items():
-        if d.has_key(k):
+        if k in d:
             d[v] = unicode_isopsephy(d[k])
 
 # accents / diacritics for simplified greek letters
@@ -406,7 +406,7 @@ _accents_[u'ω'] = u"ὥ ῶ ὧ ώ ὠ ῳ ᾧ ὼ ώ ὠ ὡ ὢ ὣ ὤ ὥ �
 
 accents = {}
 
-for letter, values in _accents_.iteritems():
+for letter, values in _accents_.items():
     for value in values.split():
         accents[value] = letter
 
@@ -420,7 +420,7 @@ regex_greek = re.compile('|'.join(accents.keys()))
 regex_greek2 = re.compile('[^%s ]+' % u"αΑβΒγΓδΔεΕϛϚϜϝζΖηΗθΘιΙυϒYκΚϡϠͲͳλΛωΩμΜτΤνΝξΞοΟσΣϹϲςπΠχΧϙϘϞϟρΡψΨφΦ")
 def preprocess_greek(string):
     # convert diacritics to simpler forms
-    string = unicode(string, encoding="utf-8")
+    #string = unicode(string, encoding="utf-8")
     string = regex_greek.sub(lambda x: accents[x.group()], string)
     # remove all other characters
     return regex_greek2.sub('', string).encode('utf-8')
@@ -430,7 +430,7 @@ def find(text, num, cumulative = False):
     numbers = list(map(isopsephy, words))
     if cumulative:
         result = []
-        for incides in search.find_cumulative_indices(numbers, num):
+        for incides in find_cumulative_indices(numbers, num):
             result.append(' '.join([words[idx] for idx in incides]))
         return result
     else:
