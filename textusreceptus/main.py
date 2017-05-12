@@ -157,7 +157,7 @@ def parse_verse(verse):
     return " ".join(verse_words)
 
 def verse_isopsephy_numbers(verse):
-    return map(isopsephy, verse.split()) if type(verse) is str else []
+    return list(map(isopsephy, verse.split())) if type(verse) is str else []
 
 def match_isopsephy_combinations(num):
     global dataframe

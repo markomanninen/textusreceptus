@@ -423,7 +423,7 @@ def preprocess_greek(string):
     #string = unicode(string, encoding="utf-8")
     string = regex_greek.sub(lambda x: accents[x.group()], string)
     # remove all other characters
-    return regex_greek2.sub('', string).encode('utf-8')
+    return regex_greek2.sub('', string)
 
 def find(text, num, cumulative = False):
     words = text.split()

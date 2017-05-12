@@ -14,7 +14,7 @@ dictionary = pd.DataFrame()
 def load_dataframe(csv = "nt-strongs.csv"):
     global dictionary
     if isfile(csv):
-        print "Retrieving data from local csv copy..."
+        print ("Retrieving data from local csv copy...")
         dictionary = pd.read_csv(csv, sep = "\t")
         # greek sords are pre processed for simpler forms without accents
         dictionary['word'] = dictionary['word'].map(lambda x: preprocess_greek(x))
@@ -23,7 +23,7 @@ def load_dataframe(csv = "nt-strongs.csv"):
         # adding word isopsephy value to the dataframe
         dictionary['isopsephy'] = dictionary['word'].map(lambda x: isopsephy(x))
     else:
-        print "Cannot read csv file: %s! Please check path/filename and reload dictionary with load_dataframe(csv = \"your_filename\") function" % csv
+        print ("Cannot read csv file: %s! Please check path/filename and reload dictionary with load_dataframe(csv = \"your_filename\") function" % csv)
 
 def find(query, column):
     global dictionary
@@ -44,7 +44,7 @@ def search_strongs_dictionary_table(query, field):
 def search_strongs_dictionary_html(query, field):
     # using print data stream instead of returning data makes 
     # less hassle with unicodes and character encodings
-    print str(search_strongs_dictionary_table(query, field))
+    print (str(search_strongs_dictionary_table(query, field)))
 
 #
 def print_search_form_html():
